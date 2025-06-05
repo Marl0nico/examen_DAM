@@ -18,3 +18,7 @@ Se puede visualizar una noticia publicada, ubicación, consumo de una API y la n
 Guardado de datos en firebase:
 
 ![image](https://github.com/user-attachments/assets/48ccd878-d322-4ed8-9159-a468346502ac)
+
+Ventana para agregar una nueva noticia:
+
+![image](https://github.com/user-attachments/assets/42cb8a67-8f48-4e56-8ec9-5343124335e0)
