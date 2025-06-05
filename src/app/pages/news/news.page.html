@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Noticias</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="logOut()">Cerrar sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngIf="username && avatarUrl" >
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="avatarUrl" alt="Avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h2>Bienvenido - {{ username }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-button expand="block" (click)="abrirFormularioNoticia()" class="ion-margin-bottom">
+    ➕ Nueva Noticia
+  </ion-button>
+
+  <ion-list *ngIf="noticias.length > 0; else sinNoticias">
+    <ion-card *ngFor="let noticia of noticias" class="ion-margin-bottom">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="noticia.avatarUrl || 'https://i.pravatar.cc/150?u=default'" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ noticia.titulo }}</h2>
+          <p>{{ noticia.contenido }}</p>
+          <small>
+            <small>
+              Por {{ noticia.autor }} - {{ noticia.fecha | date:'short' }}
+            </small>
+
+          </small>
+        </ion-label>
+      </ion-item>
+
+      <ion-card-content>
+        <img *ngIf="noticia.imagenUrl" [src]="noticia.imagenUrl" style="width: 100%; margin-top: 10px;" />
+        <p *ngIf="noticia.lat && noticia.lng">📍 Ubicación: {{ noticia.lat }}, {{ noticia.lng }}</p>
+        <p *ngIf="noticia.apiInfo">🌐 Info externa: {{ noticia.apiInfo }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #sinNoticias>
+    <p class="ion-text-center ion-padding">No hay noticias publicadas aún.</p>
+  </ng-template>
+
+</ion-content>
